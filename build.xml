@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<project name="jsGrid" basedir="." default="deploy">
+	<property file="build.properties" />
+
+	<path id="master-classpath">
+		<fileset dir="${lib.path}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.path}" />
+	</path>
+
+	<target name="build" description="Compile main source tree java files">
+		<mkdir dir="${build.path}" />
+		<javac destdir="${build.path}" target="1.4" debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.path}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+
+	<target name="deploy" depends="build" description="Deploy application">
+		<war destfile="jsGrid.war" webxml="web/WEB-INF/web.xml">
+			<fileset dir="web" />
+			<lib dir="lib" />
+			<classes dir="${build.path}" />
+		</war>
+		<copy todir="${deploy.path}">
+			<fileset file="jsGrid.war" />
+		</copy>
+	</target>
+
+</project>
