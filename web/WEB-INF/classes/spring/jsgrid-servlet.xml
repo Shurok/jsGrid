@@ -7,7 +7,6 @@
 	<context:component-scan base-package="ua.kpi.scs.controller" />
 	<context:component-scan base-package="ua.kpi.service" />
 
-
 	<beans:bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="viewClass"

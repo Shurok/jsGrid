@@ -35,10 +35,15 @@ public class DbPageService {
 
 	}
 
-	public void startDb() {
-		Url url = new Url();
-		url.setUrl("http://yandex.ru");
-		dao.save(url);
+	public Page getPagebyUrl(final String url) {
+		String pageSource = null;
+		final Page page = new Page();
+
+		page.setUrl(url);
+		pageSource = getPageHtmlSource(page.getUrl());
+		page.setSource(pageSource);
+
+		return page;
 	}
 
 	public void setUrlToDb(String urlStr) {
@@ -59,9 +64,7 @@ public class DbPageService {
 	public void setResponse(PageResponse pageResponse) {
 		String[] urls = pageResponse.getUrls();
 		for (int i = 0; i < urls.length; i++) {
-			if ((urls[i] == null) || (urls[i].length() == 0)
-					|| (urls[i].length() > Url.MAX_URL_LENGTH)
-					|| (urls[i] == "")) {
+			if ((urls[i] == null) || (urls[i].length() == 0) || (urls[i].length() > Url.MAX_URL_LENGTH) || (urls[i] == "")) {
 				LOG.info("Cannot save URL " + urls[i]);
 
 			} else {
@@ -80,17 +83,23 @@ public class DbPageService {
 		try {
 			URL site = new URL(pageUrl);
 			URLConnection yc = site.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					yc.getInputStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 			String inputLine;
 
 			while ((inputLine = in.readLine()) != null) {
 				buffer.append(inputLine);
+				if (buffer.length() > 1000000) {
+					LOG.debug("Page is too long length = " + buffer.length() + ", so we'll ignore it");
+					break;
+				}
 			}
 			in.close();
 		} catch (Exception e) {
 			LOG.debug("Server cannot get page " + pageUrl, e);
 		}
+
+		LOG.debug("Length of buffer " + buffer.length());
+
 		return buffer.toString();
 
 	}

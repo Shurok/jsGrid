@@ -31,5 +31,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="lib" path="D:/diploma/jsGrid/lib/servlet-api-2.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="lib/json-rpc-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
