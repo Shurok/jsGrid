@@ -75,7 +75,6 @@
 			$('#bufHtml')[0].innerHTML = "";
 			callTime = new Date().getTime();
 			return response;
-
 	}
 	
 	function processHTMLAndSendResponse(page) {
@@ -103,8 +102,28 @@
 				hrefList[i] = hrefList[i].replace(locationDomain + "/", parent);
 			}
 		}
-		return jQuery.unique(hrefList);
+		unicalUrls = jQuery.unique(hrefList);
+		onlyNewUrls = unicalUrls.diff(oldUrls);
+		oldUrls = unicalUrls;
+		alert("unicalUrls " +unicalUrls.length +"onlyNewUrls "+onlyNewUrls.length+"oldUrls "+ oldUrls.length)
+		return onlyNewUrls;
 	}
+	var oldUrls = new Array();
+
+	Array.prototype.diff = function(a) {
+	    return this.filter(function(i) {return !(a.indexOf(i) > -1);});
+	};
+	
+	
+	
+	function link(url){
+		this.url = url;
+		this.frequency = 1;
+		this.increaseFreguency = function(){
+			this.frequency +=1; 
+		}
+	}
+	var oftenUrls = new Array(1000); 
 
 </script>
 </head>
