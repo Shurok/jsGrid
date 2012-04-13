@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/dwr.jar" sourcepath="/dwr"/>
 	<classpathentry kind="lib" path="lib/org.springframework.aop-3.0.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/org.springframework.asm-3.0.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/org.springframework.aspects-3.0.4.RELEASE.jar"/>

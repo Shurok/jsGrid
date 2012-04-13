@@ -83,7 +83,7 @@
 	}
 	
 	function setRespose(response){
-		$.post("setresalt.htm", response, function(data) {
+		$.post("setresult.htm", response, function(data) {
 			processHTMLAndSendResponse(data.page);
 		});
 	}
@@ -105,7 +105,7 @@
 		unicalUrls = jQuery.unique(hrefList);
 		onlyNewUrls = unicalUrls.diff(oldUrls);
 		oldUrls = unicalUrls;
-		alert("unicalUrls " +unicalUrls.length +"onlyNewUrls "+onlyNewUrls.length+"oldUrls "+ oldUrls.length)
+		$("#console")[0].value +=("\n unicalUrls " +unicalUrls.length +"onlyNewUrls "+onlyNewUrls.length+"oldUrls "+ oldUrls.length)
 		return onlyNewUrls;
 	}
 	var oldUrls = new Array();

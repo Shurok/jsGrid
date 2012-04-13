@@ -55,7 +55,7 @@ public class GridController {
 		return response;
 	}
 
-	@RequestMapping(value = "setresalt.htm")
+	@RequestMapping(value = "setresult.htm")
 	public @ResponseBody
 	final Map<String, Object> setResponseAndGetNewPage(final HttpServletRequest request) {
 

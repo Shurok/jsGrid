@@ -40,8 +40,8 @@ public class UrlDaoImpl extends AbstractDao {
 	@Transactional(readOnly = false)
 	public Url save(final Url url) {
 		Url url2Return = url;
-		final Query query = this.em.createNamedQuery(Url.GET_URL_BY_ADDRESS);
-		query.setParameter("url", url.getUrl());
+		final Query query = this.em.createNamedQuery(Url.GET_URL_BY_ADDRESS_HASH);
+		query.setParameter("urlHash", url.getUrlHash());
 		if (query.getResultList().size() == 0) {
 			url2Return = this.em.merge(url);
 			em.flush();

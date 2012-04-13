@@ -70,7 +70,11 @@ public class DbPageService {
 			} else {
 				Url url = new Url();
 				url.setUrl(urls[i]);
-				dao.save(url);
+				try {
+					dao.save(url);
+				} catch (Exception e) {
+					LOG.warn("Somthing strange with DB Cannot save URL " + url, e);
+				}
 			}
 		}
 
